@@ -1,0 +1,18 @@
+.card {
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.card img {
+  max-height: 240px;
+}
+
+.card .description {
+  color: #7f7f7f;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 16px;
+}
