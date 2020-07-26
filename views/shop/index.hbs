@@ -1,82 +1,21 @@
 {{# each products  }}
-    <div class="row">
+    <div class="row row-cols-4 row mx-md-n5 justify-content-center ">
         {{# each this }}
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="{{ this.imagePath }}" alt="..." class="img-responsive">
-                    <div class="caption">
-                        <h3>{{ this.title }}</h3>
-                        <p class="description">{{ this.description }}</p>
-                        <div class="clearfix">
-                            <div class="price pull-left">${{ this.price }}</div>
-                            <a href="#" class="btn btn-success pull-right" role="button">Add to Shopping Cart</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="card" style="width: 15rem;">
+      <img src="{{ this.imagePath }}" class ="img-fluid">
+      <div class="card-body">
+         <h5 class="card-title">{{ this.title }}</h5>
+         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+      <div class="card-body">
+         <div class="clearfix">
+            <div class="price pull-left">${{ this.price }}</div>
+            <a href = "#" class = "btn btn-success pull-right" role="button">
+            Añadir
+            </a>
+         </div>
+      </div>
+   </div>
         {{/each}}
     </div>
 {{/each}}
-
-<div class = "row row-cols-5 row mx-md-n5 justify-content-center">
-   <div class="card" style="width: 15rem;">
-      <img src="https://www.100ladrillos.com/static/media/properties-catehua.da7fca2c.jpg" alt="..." class ="img-fluid">
-      <div class="card-body">
-         <h5 class="card-title">Plaza Catehua, Monterrey</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-body">
-         <div class="clearfix">
-            <div class="price pull-left">$6,650</div>
-            <a href = "#" class = "btn btn-success pull-right" role="button">
-            Button
-            </a>
-         </div>
-      </div>
-   </div>
-   <div class="card" style="width: 15rem;">
-      <img class="img-fluid"src="https://www.100ladrillos.com/static/media/properties-allius.3495ed4e.jpg" alt="..." >
-      <div class="card-body">
-         <h5 class="card-title">Torre Allius - piso 5, Guadalajara</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-body">
-         <div class="clearfix">
-            <div class="price pull-left">$25,900</div>
-            <a href = "#" class = "btn btn-success pull-right" role="button">
-            Button
-            </a>
-         </div>
-      </div>
-   </div>
-   <div class="card" style="width: 15rem;">
-      <img src="https://www.100ladrillos.com/static/media/properties-sonata.5448260c.jpg" alt="..." class ="img-fluid">
-      <div class="card-body">
-         <h5 class="card-title">Sonata (Oficinas), Guadalajara</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-body">
-         <div class="clearfix">
-            <div class="price pull-left">$3,400</div>
-            <a href = "#" class = "btn btn-success pull-right" role="button">
-            Button
-            </a>
-         </div>
-      </div>
-   </div>
-    <div class="card" style="width: 15rem;">
-      <img src="https://www.100ladrillos.com/static/media/properties-wesley.5ca8bf07.jpg" alt="..." class ="img-fluid">
-      <div class="card-body">
-         <h5 class="card-title">The Wesley,Tijuana</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
-      <div class="card-body">
-         <div class="clearfix">
-            <div class="price pull-left">$15,900</div>
-            <a href = "#" class = "btn btn-success pull-right" role="button">
-            Button
-            </a>
-         </div>
-      </div>
-   </div>
-</div>
