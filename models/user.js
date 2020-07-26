@@ -8,7 +8,7 @@ var userSchema = new Schema({
 });
 
 
-//encripación de contraseña
+//encriptación de contraseña
 userSchema.methods.encryptPassword = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
 };

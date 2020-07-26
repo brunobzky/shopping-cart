@@ -45,3 +45,32 @@ passport.use('local.signup', new LocalStrategy({
         });
     });
 }));
+
+passport.use('local.signin', new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password',
+    passReqToCallback: true
+}, function (req, email, password, done) {
+    req.checkBody('email', 'Escribe un correo válido').notEmpty().isEmail();
+    req.checkBody('password', 'La contraseña no cumple los requisitos').notEmpty();
+    var errors = req.validationErrors();
+    if (errors) {
+        var messages = [];
+        errors.forEach(function (error) {
+            messages.push(error.msg);
+        });
+        return done(null, false, req.flash('error', messages));
+    }
+    User.findOne({ 'email': email }, function (err, user) {//Encuentra si existe un corro registrado
+        if (err) {
+            return done(err);
+        }
+        if (!user) {
+            return done(null, false, { message: 'Usuario o contraseña inválidos.' });
+        }
+        if (!user.validPassword(password)){
+            return done(null, false, { message: 'Usuario o contraseña inválidos.' });
+        }
+        return done (null, user);
+    });
+}));

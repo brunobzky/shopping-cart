@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
     <div class="col-md-5 col-md-offset-5">
-        <h1>Iniciar sesión</h1>
+        <h1>Crear cuenta</h1>
         {{#if hasErrors}}
         <div class="alert alert-warning" role="alert">
             {{#each messages }}
@@ -18,7 +18,7 @@
                 <input type="password" id="password" name="password" class="form-control">
             </div>
             <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            <button type="submit" class="btn btn-primary">Crear cuenta</button>
         </form>
     </div>
 </div>
