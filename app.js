@@ -7,7 +7,7 @@ var expressHbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var session = require('express-session');
 
 
 var app = express();
@@ -16,7 +16,7 @@ var app = express();
 mongoose.connect('mongodb://localhost:27017/shopping')
 
 // view engine setup
-app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.engine('.hbs', expressHbs({ defaultLayout: 'layout', extname: '.hbs' }));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 
@@ -24,18 +24,23 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'lost4815162342',
+  resave: false,
+  saveUninitialized: false
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

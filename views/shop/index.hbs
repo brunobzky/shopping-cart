@@ -1,21 +1,21 @@
 {{# each products  }}
-    <div class="row row-cols-4 row mx-md-n5 justify-content-center ">
-        {{# each this }}
-            <div class="card" style="width: 15rem;">
-      <img src="{{ this.imagePath }}" class ="img-fluid">
+<div class="row row-cols-4 row mx-md-n5 justify-content-center ">
+   {{# each this }}
+   <div class="card" style="width: 15rem;">
+      <img src="{{ this.imagePath }}" class="img-fluid">
       <div class="card-body">
          <h5 class="card-title">{{ this.title }}</h5>
-         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+         <p class="card-text">{{ this.description }}.</p>
       </div>
       <div class="card-body">
          <div class="clearfix">
             <div class="price pull-left">${{ this.price }}</div>
-            <a href = "#" class = "btn btn-success pull-right" role="button">
-            Añadir
+            <a href="#" class="btn btn-success pull-right" role="button">
+               Añadir
             </a>
          </div>
       </div>
    </div>
-        {{/each}}
-    </div>
+   {{/each}}
+</div>
 {{/each}}
