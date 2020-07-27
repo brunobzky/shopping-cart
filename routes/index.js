@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+var Cart = require('../models/cart');
 var Product = require('../models/product');
+//const { route } = require('./user');
 
 
 /* GET home page. */
@@ -17,6 +19,31 @@ router.get('/', function (req, res, next) {
       products: productChunks
     });
   });
+});
+
+
+//Agregar al carrito
+router.get('/add-to-cart/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});//valida sí se tiene almacenado un carrito en la sesión, sino, crea uno nuevo
+
+  Product.findById(productId, function (err, product) {
+    if (err) {
+      return res.redirect('/');
+    }
+    cart.add(product, product.id);//función para añadir al carrito, ubicada en "models/cart.js"
+    req.session.cart = cart;
+    console.log(req.session.cart);
+    res.redirect('/')
+  });
+});
+
+router.get('/shopping-cart', function (req, res, next) {
+  if (!req.session.cart) {
+    return res.render('shop/shopping-cart', { products: null });
+  }
+  var cart = new Cart(req.session.cart);
+  res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
 
