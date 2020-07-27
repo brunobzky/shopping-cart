@@ -22,6 +22,7 @@ router.get('/', function (req, res, next) {
 });
 
 
+
 //Agregar al carrito
 router.get('/add-to-cart/:id', function (req, res, next) {
   var productId = req.params.id;
@@ -34,10 +35,42 @@ router.get('/add-to-cart/:id', function (req, res, next) {
     cart.add(product, product.id);//función para añadir al carrito, ubicada en "models/cart.js"
     req.session.cart = cart;
     console.log(req.session.cart);
-    res.redirect('/')
+    res.redirect('/');
   });
 });
 
+//reducir uno del carrito
+router.get('/reduce/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.reduceByOne(productId);
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+});
+
+
+//remover producto del carrito
+router.get('/remove/:id', function (req, res, next) {
+  var productId = req.params.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.removeItem(productId);
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+});
+
+//DESARROLLO
+//vaciar carrito de compras
+router.get('/remove-all'), function (req, res, next) {
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.removeAll();
+  req.session.cart = cart;
+  res.redirect('/shopping-cart');
+}
+
+//carrito de compras
 router.get('/shopping-cart', function (req, res, next) {
   if (!req.session.cart) {
     return res.render('shop/shopping-cart', { products: null });
@@ -46,6 +79,8 @@ router.get('/shopping-cart', function (req, res, next) {
   res.render('shop/shopping-cart', { products: cart.generateArray(), totalPrice: cart.totalPrice });
 });
 
+
+//Verificación de datos
 router.get('/checkout', function (req, res, next) {
   if (!req.session.cart) {
     return res.redirect('/shopping-cart');

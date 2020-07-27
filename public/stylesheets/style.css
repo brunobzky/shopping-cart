@@ -4,10 +4,6 @@
   margin-right: 10px;
 }
 
-.card img {
-  max-height: 240px;
-}
-
 .card .description {
   color: #7f7f7f;
 }
@@ -15,4 +11,8 @@
 .price {
   font-weight: bold;
   font-size: 16px;
+}
+
+.label-success {
+  margin-right: 30px;
 }

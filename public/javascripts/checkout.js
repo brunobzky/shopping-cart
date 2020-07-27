@@ -1,3 +1,5 @@
+//Script para hacer cargos por medio de Stripe
+
 Stripe.setPublishableKey('pk_test_51H9KicJlw2h7wiPtMRcyW0JzSbxSvLTvv9Mp18maT6CdTSTrgODOJhSf6it76a9LNq4E2nWIF50juD2rRb1cpxBL00lPzrZRTY');
 
 var $form = $('#checkout-form');

@@ -1,5 +1,5 @@
 module.exports = function Cart(oldCart) {//parametro con los ladrillos previamente agregados
-    this.items = oldCart.items  || {};
+    this.items = oldCart.items || {};
     this.totalQty = oldCart.totalQty || 0;
     this.totalPrice = oldCart.totalPrice || 0;
 
@@ -14,6 +14,33 @@ module.exports = function Cart(oldCart) {//parametro con los ladrillos previamen
         storedItem.price = storedItem.item.price * storedItem.qty;
         this.totalQty++;
         this.totalPrice += storedItem.item.price;
+    };
+
+    //reducir ladrillos de uno por uno
+    this.reduceByOne = function (id) {
+        this.items[id].qty--;
+        this.items[id].price -= this.items[id].item.price;
+        this.totalQty--;
+        this.totalPrice -= this.items[id].item.price;
+
+        if (this.items[id].qty <= 0) {
+            delete this.items[id];
+        }
+    };
+
+    //Remover todos los ladrillos de un inmueble
+    this.removeItem = function (id) {
+        this.totalQty -= this.items[id].qty;
+        this.totalPrice -= this.items[id].price;
+        delete this.items[id];
+    };
+
+    //DESARROLLO
+    //Remover todos los ladrillos del carrito
+    this.removeAll = function () {
+        this.items = {};
+        this.totalQty = 0;
+        this.totalPrice = 0;
     };
 
     //Añadir objetos a un arreglo
