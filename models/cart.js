@@ -28,6 +28,19 @@ module.exports = function Cart(oldCart) {//parametro con los ladrillos previamen
         }
     };
 
+    //DESARROLLO
+    //reducir ladrillos según lo indicado
+    this.reduceByN = function (id, n) {
+        this.items[id].qty -= n;
+        this.items[id].price -= this.items[id].item.price * n;
+        this.totalQty -= n;
+        this.totalPrice -= this.items[id].item.price * n;
+
+        if (this.items[id].qty <= 0) {
+            delete this.items[id];
+        }
+    };
+
     //Remover todos los ladrillos de un inmueble
     this.removeItem = function (id) {
         this.totalQty -= this.items[id].qty;

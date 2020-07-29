@@ -21,8 +21,6 @@ router.get('/', function (req, res, next) {
   });
 });
 
-
-
 //Agregar al carrito
 router.get('/add-to-cart/:id', function (req, res, next) {
   var productId = req.params.id;
